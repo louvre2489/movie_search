@@ -1,20 +1,21 @@
 package main
 
 import (
-	"net/http"
+	"movie_search/controller"
 
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
-  engine := gin.Default()
-  engine.GET("/", getRoute)
+	router := gin.Default()
 
-  engine.Run()
-}
+	// v1 のグループ
+	v1 := router.Group("/v1")
+	{
+		v1.GET("", controller.GetRoute)
+		v1.GET("/", controller.GetRoute)
+		v1.GET("/search", controller.GetRecomendMovie)
+	}
 
-func getRoute(c *gin.Context) {
-  c.JSON(http.StatusOK, gin.H{
-    "message": "hello world!",
-  })
+	router.Run()
 }
