@@ -1,9 +1,8 @@
 package main
 
 import (
-	"movie_search/controller"
-
 	"github.com/gin-gonic/gin"
+	"github.com/louvre2489/movie_search/controller"
 )
 
 func main() {

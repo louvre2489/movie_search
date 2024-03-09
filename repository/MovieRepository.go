@@ -6,9 +6,10 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/louvre2489/movie_search/config"
+
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jmoiron/sqlx"
-	"movie_search/config"
 )
 
 func New(ctx context.Context, cfg *config.Config) (*sqlx.DB, func(), error) {
