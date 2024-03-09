@@ -1,0 +1,35 @@
+version: "3.9"
+services:
+  app:
+    image: moviesearch
+    build:
+      args:
+        - target=dev
+    environment:
+      MOVI_SEARCH_ENV: dev
+      PORT: 8080
+      MOVIE_SEARCH_DB_HOST: moviesearch-db
+      MOVIE_SEARCH_DB_PORT: 3306
+      MOVIE_SEARCH_DB_USER: moviesearch
+      MOVIE_SEARCH_DB_PASSWORD: moviesearch
+      MOVIE_SEARCH_DB_DATABASE: moviesearch
+    volumes:
+      - .:/app
+    ports:
+      - "18000:8080"
+  moviesearch-db:
+    image: mysql:8.0.29
+    platform: linux/amd64
+    container_name: moviesearch-db
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_USER: moviesearch
+      MYSQL_PASSWORD: moviesearch
+      MYSQL_DATABASE: moviesearch
+    volumes:
+      - moviesearch-db-data:/var/lib/mysql
+      - $PWD/_tools/mysql/conf.d:/etc/mysql/conf.d:cached
+    ports:
+      - "33306:3306"
+volumes:
+  moviesearch-db-data:
