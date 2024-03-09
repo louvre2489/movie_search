@@ -1,4 +1,4 @@
-package repository
+package store
 
 import (
 	"context"
@@ -66,3 +66,5 @@ var (
 	_ Queryer  = (*sqlx.DB)(nil)
 	_ Queryer  = (*sqlx.Tx)(nil)
 )
+
+type Repository struct{}
